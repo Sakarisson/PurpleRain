@@ -24,13 +24,13 @@
         this.x = 0;
         this.y = 0;
 
-        this.init = function() {
+        this.init = () => {
             this.x = Math.floor(Math.random() * cfg.canvasWidth);
             this.y = -Math.floor(Math.random() * cfg.canvasHeight);
             this.fallSpeed = cfg.minFallSpeed + Math.random() * (cfg.maxFallSpeed - cfg.minFallSpeed)
         }
 
-        this.reset = function() {
+        this.reset = () => {
             this.init();
             this.y = -this.height;
         }
@@ -49,7 +49,7 @@
             raindrops.push(pushDrop);
         }
 
-        setInterval(function() {
+        setInterval(() => {
             mainLoop();
         }, 10);
     }
@@ -61,7 +61,7 @@
     }
 
     function drawRain() {
-        $.each(raindrops, function(i, drop) {
+        $.each(raindrops, (i, drop)  => {
             context.beginPath();
             context.fillStyle = cfg.rainColor;
             context.fillRect(drop.x, drop.y, drop.width, drop.height);
@@ -69,7 +69,7 @@
     }
 
     function moveRain() {
-        $.each(raindrops, function(i, drop) {
+        $.each(raindrops, (i, drop) => {
             drop.y += drop.fallSpeed;
             drop.fallSpeed += drop.acceleration;
             if(drop.y > cfg.canvasHeight) {
@@ -95,7 +95,7 @@
 
     $(document).ready(setup);
 
-    $(window).on('resize', function(){
+    $(window).on('resize', () => {
         adjustWindow();
     });
 }
